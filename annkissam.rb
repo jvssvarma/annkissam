@@ -1,12 +1,20 @@
-$nouns = ["abcd", "c", "def", "h", "ij", "cde"]
-$verbs = ["bc", "fg", "g", "hij", "bcd"]
-$articles = ["a", "ac", "e"]
+# Assuming dictionary as an array here. If it's a hash with nouns, verbs, articles as key's the I would convert it to array's just like below and do the same.
+# Nouns, Verbs and Articles are made global, so that they can be accessed anywhere
+# This is because we are generating valid sentences from dictionary and the dictionary is constant in this case
+NOUNS = ["abcd", "c", "def", "h", "ij", "cde"]
+VERBS = ["bc", "fg", "g", "hij", "bcd"]
+ARTICLES = ["a", "ac", "e"]
+
+# Get the string here
 print "Enter the string:"
 str = gets.chomp
-$dictionary = $nouns + $verbs + $articles
+
+# Again create a constant to make it easier to use
+DICTIONARY = NOUNS + VERBS + ARTICLES
 
 class Annkissam
 
+  # This will give all the sentences that can be formed with string
   def sentences(str, dictionary)
     n = str.length
     result = []
@@ -21,6 +29,7 @@ class Annkissam
     result
   end
 
+  # This is to validate the sentence with the conditions
   def valid_sentence(str, dictionary)
     final_result = []
     sentences(str, dictionary).each do |a|
@@ -34,18 +43,22 @@ class Annkissam
 
   private
 
+  # checks if all words in sentence are from dictionary
   def all_words_valid? set
-    (set & $dictionary) == set
+    (set & DICTIONARY) == set
   end
 
+  # checks if there's a verb in the sentence
   def verb_correct? set
-    (set & $verbs).count >= 1
+    (set & VERBS).count >= 1
   end
 
+  # checks if there's a noun or atleast 2 articles in the sentence
   def noun_articles_correct? set
-    ((set & $nouns).count >= 1) || ((set & $verbs).count >= 2)
+    ((set & NOUNS).count >= 1) || ((set & ARTICLES).count >= 2)
   end
+
 end
 
 lets_test = Annkissam.new
-print lets_test.valid_sentence(str, $dictionary)
+print lets_test.valid_sentence(str, DICTIONARY)
