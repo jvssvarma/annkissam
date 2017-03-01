@@ -1,3 +1,10 @@
+$nouns = ["abcd", "c", "def", "h", "ij", "cde"]
+$verbs = ["bc", "fg", "g", "hij", "bcd"]
+$articles = ["a", "ac", "e"]
+print "Enter the string:"
+str = gets.chomp
+$dictionary = $nouns + $verbs + $articles
+
 class Annkissam
 
   def sentences(str, dictionary)
@@ -13,5 +20,12 @@ class Annkissam
     end
     result
   end
-  
+
+  def valid_sentence(str, dictionary)
+    sentences(str, dictionary)
+  end
+
 end
+
+lets_test = Annkissam.new
+print lets_test.valid_sentence(str, $dictionary)
