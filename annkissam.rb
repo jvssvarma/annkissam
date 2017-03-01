@@ -16,6 +16,7 @@ class Annkissam
 
   # This will give all the sentences that can be formed with string
   def sentences(str, dictionary)
+    return $processing[str] if $processing && $processing[str]
     n = str.length
     result = []
     result << str if dictionary.include? str
@@ -26,11 +27,15 @@ class Annkissam
         result += one_result
       end
     end
+    $processing[str] = result
+    ## Uncomment the 'puts' line below to see how the algorithm runs
+    # puts $processing
     result
   end
 
   # This is to validate the sentence with the conditions
   def valid_sentence(str, dictionary)
+    $processing = {}
     final_result = []
     sentences(str, dictionary).each do |a|
       set = a.split(" ")
